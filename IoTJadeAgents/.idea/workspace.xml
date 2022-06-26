@@ -4,28 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="864dd840-77e0-4110-b6cd-04f14593ed5a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/eclipse_paho_client_mqttv3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/hivemq_mqtt_client.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/jade.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IoTJadeAgents.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Agents/CommunicationAgent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Agents/CrosswalkPassageAgent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Agents/DistanceDetectionAgent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Agents/PedestrianSignalAgent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Agents/WarningAgent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Mqtt/AgentMQTT.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Mqtt/DriverHiveMQTT.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Mqtt/DriverMQTT.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Util/ConsoleColors.java" afterDir="false" />
-    </list>
+    <list default="true" id="864dd840-77e0-4110-b6cd-04f14593ed5a" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,7 +19,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/Main.java" root0="FORCE_HIGHLIGHTING" />
@@ -64,14 +43,15 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/andre/Desktop/DEVTOOLS/jade.jar",
+    "last_opened_file_path": "C:/Users/andre/Desktop/IOT_GIT/IoTJadeAgents/jade.jar",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2"
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -102,6 +82,7 @@
       <option name="presentableId" value="Default" />
       <updated>1655595870811</updated>
       <workItem from="1656204260749" duration="28949000" />
+      <workItem from="1656278990671" duration="107000" />
     </task>
     <servers />
   </component>
