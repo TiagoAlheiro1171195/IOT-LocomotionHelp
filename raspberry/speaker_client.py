@@ -24,15 +24,18 @@ def change_state():
 
 	answer = time.time() - previous_time < TIMEOUT
 		
-	client.publish("cross/answer", payload=answer, qos=1, retain=false)
+	client.publish("cross/answer", payload=answer)
+	if(answer):
+		print("changing signal to green")
+		process_audio("changing signal to green")
     
 button.when_pressed = change_state
 
 # text to speach setup
 engine = pyttsx3.init()
 rate = engine.getProperty('rate')
-engine.setProperty('rate', rate - 50)
-engine.setProperty('voice', 'en-scottish')
+engine.setProperty('rate', rate - 70)
+engine.setProperty('voice', 'english')
 #voices = engine.getProperty('voices')
 #for voice in voices:
 #	print(voice.id)
@@ -78,7 +81,7 @@ client.tls_set(tls_version=mqtt.client.ssl.PROTOCOL_TLS)
 client.username_pw_set("Usertest1", "Usertest1")
 client.connect("051628c3388941d8b16f28b1727ca6c1.s2.eu.hivemq.cloud", 8883)
 client.subscribe("device/audio")
-client.subscribe("cross/request", qos=1)
+client.subscribe("cross/request")
 client.loop_forever()
 
 

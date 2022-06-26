@@ -7,7 +7,7 @@ import jade.lang.acl.ACLMessage;
 
 public class DistanceDetectionAgent extends AgentMQTT {
     final float VALUE_RANGE = 10; // cm
-    final float MIN_WARNING_VALUE = 200; // cm
+    final float MIN_WARNING_VALUE = 100; // cm
     final int MIN_REPEATED = 2;
     private String subscribeTopic;
     private String warningAgentName;

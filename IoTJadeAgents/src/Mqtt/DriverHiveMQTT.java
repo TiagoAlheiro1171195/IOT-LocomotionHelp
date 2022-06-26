@@ -13,14 +13,12 @@ public class DriverHiveMQTT {
     final String USER = "Usertest1";
     final String PASS = "Usertest1";
     private AgentMQTT myAgent;
-    private Mqtt5BlockingClient client;
 
     public DriverHiveMQTT(AgentMQTT myAgent) {
         this.myAgent = myAgent;
-        InitClient();
     }
 
-    private void InitClient(){
+    private Mqtt5BlockingClient InitClient(){
         try {
             // create an MQTT client
             final Mqtt5BlockingClient client = MqttClient.builder()
@@ -46,10 +44,10 @@ public class DriverHiveMQTT {
                 myAgent.ProcessMessageArrived(topic, payload);
             });
 
-            this.client = client;
+            return client;
         } catch (Exception ex){
-            client = null;
             ex.printStackTrace();
+            return null;
         }
     }
 
@@ -60,6 +58,7 @@ public class DriverHiveMQTT {
 
     public void SubscribeTopic(String topicName, int qos)
     {
+        Mqtt5BlockingClient client = InitClient();
         client.subscribeWith()
                 .topicFilter(topicName)
                 .qos(MqttQos.fromCode(qos))
@@ -78,6 +77,7 @@ public class DriverHiveMQTT {
 
     public void PublishMessage(String topicName, String message, int qos, boolean retain)
     {
+        Mqtt5BlockingClient client = InitClient();
         client.publishWith()
                 .topic(topicName)
                 .payload(UTF_8.encode(message))

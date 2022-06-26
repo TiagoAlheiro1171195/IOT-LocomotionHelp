@@ -6,13 +6,14 @@ import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.core.behaviours.TickerBehaviour;
 import jade.lang.acl.ACLMessage;
+import jade.lang.acl.MessageTemplate;
 
 public class PedestrianSignalAgent extends AgentMQTT {
     public enum Signal {
         red,
         green
     }
-    final int TICKER_TIMER = 20000; // ms
+    final int TICKER_TIMER = 100000; // ms
     public String publishTopic;
     public Signal lightState = Signal.red;
     DriverHiveMQTT driver;
@@ -38,9 +39,10 @@ public class PedestrianSignalAgent extends AgentMQTT {
     private class CrossingRequestListener extends CyclicBehaviour{
         @Override
         public void action() {
-            ACLMessage msg = receive();
+            MessageTemplate mt = MessageTemplate.MatchPerformative(ACLMessage.REQUEST);
+            ACLMessage msg = receive(mt);
 
-            if (msg == null || msg.getPerformative() != ACLMessage.REQUEST){
+            if (msg == null){
                 return;
             }
 
@@ -70,7 +72,7 @@ public class PedestrianSignalAgent extends AgentMQTT {
         lightState = lightState == Signal.green ? Signal.red: Signal.green;
         System.out.println(ConsoleColors.YELLOW + "Pedestrian Signal Agent change state to: " + ConsoleColors.RESET + lightState);
 
-        driver.PublishMessage(publishTopic, lightState.toString(), 1, true);
+        driver.PublishMessage(publishTopic, lightState.toString(), 0, true);
         signalTicker.reset();
     }
 }

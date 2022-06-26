@@ -81,11 +81,11 @@ public class CrosswalkPassageAgent extends AgentMQTT {
 
         String content = "";
         if (payload.equalsIgnoreCase(ModelClass.gray.toString())) {
-            content = "There is a crosswalk ahead";
+            content = "there is crosswalk ahead";
         } else if (payload.equalsIgnoreCase(ModelClass.green.toString())) {
-            content = "Green pedestrian signal ahead";
+            content = "there is green signal ahead";
         } else if (payload.equalsIgnoreCase(ModelClass.red.toString())) {
-            content = "Red pedestrian signal ahead";
+            content = "there is red signal ahead";
         }
 
 
@@ -99,12 +99,13 @@ public class CrosswalkPassageAgent extends AgentMQTT {
         if (!payload.equalsIgnoreCase(ModelClass.red.toString())){
             return;
         }
+        System.out.println(ConsoleColors.RED + payload + ConsoleColors.RESET);
 
         ACLMessage reqMsg = new ACLMessage(ACLMessage.REQUEST);
 
         reqMsg.addReceiver(new AID(communicationAgentName, AID.ISLOCALNAME));
         reqMsg.setConversationId(topic);
-        reqMsg.setContent("Press button if you wish to cross");
+        reqMsg.setContent("press button if you wish to cross");
         reqMsg.setReplyWith("request" + System.currentTimeMillis());
 
         System.out.println(ConsoleColors.GREEN + "Crosswalk Passage Agent communication request sent" + ConsoleColors.RESET);

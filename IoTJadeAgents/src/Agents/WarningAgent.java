@@ -4,6 +4,7 @@ import Mqtt.*;
 import Util.ConsoleColors;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.lang.acl.ACLMessage;
+import jade.lang.acl.MessageTemplate;
 
 public class WarningAgent extends AgentMQTT {
     private String publishTopic;
@@ -26,9 +27,10 @@ public class WarningAgent extends AgentMQTT {
 
     private class WarningInformListener extends CyclicBehaviour {
         public void action() {
-            ACLMessage msg = blockingReceive();
+            MessageTemplate mt = MessageTemplate.MatchPerformative(ACLMessage.INFORM);
+            ACLMessage msg = blockingReceive(mt);
 
-            if (msg == null || msg.getPerformative() != ACLMessage.INFORM){
+            if (msg == null){
                 return;
             }
 

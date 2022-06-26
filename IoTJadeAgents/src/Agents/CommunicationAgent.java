@@ -4,6 +4,7 @@ import Mqtt.*;
 import Util.ConsoleColors;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.lang.acl.ACLMessage;
+import jade.lang.acl.MessageTemplate;
 
 public class CommunicationAgent extends AgentMQTT {
     private String publishTopic;
@@ -25,7 +26,7 @@ public class CommunicationAgent extends AgentMQTT {
 
         try {
             driver = new DriverHiveMQTT(this);
-            driver.SubscribeTopic(requestSubscribeTopic, 1);
+            driver.SubscribeTopic(requestSubscribeTopic);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -39,15 +40,16 @@ public class CommunicationAgent extends AgentMQTT {
 
     private class CommunicationInformListener extends CyclicBehaviour {
         public void action() {
-            ACLMessage msg = receive();
+            MessageTemplate mt = MessageTemplate.MatchPerformative(ACLMessage.INFORM);
+            ACLMessage msg = receive(mt);
 
-            if (msg == null || msg.getPerformative() != ACLMessage.INFORM){
+            if (msg == null){
                 return;
             }
 
             String content = msg.getContent();
 
-            System.out.println(ConsoleColors.GREEN + "Communication Agent: " + ConsoleColors.RESET + content);
+            System.out.println(ConsoleColors.GREEN + "Communication Agent INFORM: " + ConsoleColors.RESET + content);
 
             driver.PublishMessage(publishTopic, content);
         }
@@ -55,9 +57,10 @@ public class CommunicationAgent extends AgentMQTT {
 
     private class CommunicationRequestListener extends CyclicBehaviour {
         public void action() {
-            ACLMessage msg = receive();
+            MessageTemplate mt = MessageTemplate.MatchPerformative(ACLMessage.REQUEST);
+            ACLMessage msg = receive(mt);
 
-            if (msg == null || msg.getPerformative() != ACLMessage.REQUEST & request != null){
+            if (msg == null){
                 return;
             }
 
@@ -65,15 +68,15 @@ public class CommunicationAgent extends AgentMQTT {
 
             String content = msg.getContent();
 
-            System.out.println(ConsoleColors.GREEN + "Communication Agent: " + ConsoleColors.RESET + content);
+            System.out.println(ConsoleColors.GREEN + "Communication Agent REQUEST: " + ConsoleColors.RESET + content);
 
-            driver.PublishMessage(requestPublishTopic, content, 1);
+            driver.PublishMessage(requestPublishTopic, content);
         }
     }
 
     @Override
     public void ProcessMessageArrived(String topic, String payload){
-        if (!topic.equalsIgnoreCase(requestSubscribeTopic) | request == null) {
+        if (!topic.equalsIgnoreCase(requestSubscribeTopic)) {
             return;
         }
 

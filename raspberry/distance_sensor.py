@@ -21,7 +21,7 @@ PIN_BUTTON = 21
 # 1   3
 
 MAX_DISTANCE = 400 # cm
-SENSOR_INTERVAL = 2 # second
+SENSOR_INTERVAL = .5 # second
 previous_time = 0
 active = False
 sensor_active = False

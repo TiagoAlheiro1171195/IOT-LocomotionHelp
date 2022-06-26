@@ -41,5 +41,5 @@ client.on_message = on_message
 client.tls_set(tls_version=mqtt.client.ssl.PROTOCOL_TLS)
 client.username_pw_set("Usertest1", "Usertest1")
 client.connect("051628c3388941d8b16f28b1727ca6c1.s2.eu.hivemq.cloud", 8883)
-client.subscribe("semaphore", qos=1)
+client.subscribe("semaphore")
 client.loop_forever()
